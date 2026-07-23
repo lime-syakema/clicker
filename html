@@ -89,7 +89,7 @@ value="1">
 
 <img
 id="clickButton"
-src="images/ButtonA.png"
+src="images/画像A.png"
 draggable="false"
 alt="Click Button">
 
@@ -129,14 +129,14 @@ slider.addEventListener("input",()=>{
 // ボタンを押した瞬間
 clickButton.addEventListener("mousedown",()=>{
 
-    clickButton.src = "images/ButtonB.png";
+    clickButton.src = "images/画像B.png";
 
 });
 
 // ボタンを離した瞬間
 clickButton.addEventListener("mouseup",()=>{
 
-    clickButton.src = "images/ButtonA.png";
+    clickButton.src = "images/画像A.png";
 
     current++;
     max++;
@@ -148,20 +148,20 @@ clickButton.addEventListener("mouseup",()=>{
 // ボタンを押したまま外へ出たとき
 clickButton.addEventListener("mouseleave",()=>{
 
-    clickButton.src = "images/ButtonA.png";
+    clickButton.src = "images/画像A.png";
 
 });
 
 // タッチ操作対応（スマホなど）
 clickButton.addEventListener("touchstart",()=>{
 
-    clickButton.src = "images/ButtonB.png";
+    clickButton.src = "images/画像B.png";
 
 });
 
 clickButton.addEventListener("touchend",()=>{
 
-    clickButton.src = "images/ButtonA.png";
+    clickButton.src = "images/画像A.png";
 
     current++;
     max++;
