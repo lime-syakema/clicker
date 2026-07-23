@@ -126,17 +126,22 @@ slider.addEventListener("input",()=>{
 
 });
 
-// ボタンを押した瞬間
-clickButton.addEventListener("mousedown",()=>{
+// マウスが画像に乗ったら
+clickButton.addEventListener("mouseenter",()=>{
 
-    clickButton.src = "画像B.png";
+    clickButton.src = "images/画像B.png";
 
 });
 
-// ボタンを離した瞬間
-clickButton.addEventListener("mouseup",()=>{
+// マウスが画像から離れたら
+clickButton.addEventListener("mouseleave",()=>{
 
-    clickButton.src = "画像A.png";
+    clickButton.src = "images/画像A.png";
+
+});
+
+// クリックしたら数値を増やす
+clickButton.addEventListener("click",()=>{
 
     current++;
     max++;
@@ -145,23 +150,16 @@ clickButton.addEventListener("mouseup",()=>{
 
 });
 
-// ボタンを押したまま外へ出たとき
-clickButton.addEventListener("mouseleave",()=>{
-
-    clickButton.src = "画像A.png";
-
-});
-
-// タッチ操作対応（スマホなど）
+// スマホ対応
 clickButton.addEventListener("touchstart",()=>{
 
-    clickButton.src = "画像B.png";
+    clickButton.src = "images/画像B.png";
 
 });
 
 clickButton.addEventListener("touchend",()=>{
 
-    clickButton.src = "画像A.png";
+    clickButton.src = "images/画像A.png";
 
     current++;
     max++;
