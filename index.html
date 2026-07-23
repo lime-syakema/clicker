@@ -97,6 +97,7 @@ alt="Click Button">
 
 let current = 1;
 let max = 1;
+let hovering = false;
 
 const currentText = document.getElementById("current");
 const maxText = document.getElementById("max");
@@ -113,6 +114,30 @@ function updateCounter(){
     slider.value = current;
 
 }
+    function updateButtonImage(){
+
+    // TextがABCDEFG以外
+    if(textInput.value !== "030111241220"){
+
+        clickButton.src = hovering ?
+            "画像B.png" :
+            "画像A.png";
+
+        return;
+
+    }
+
+    // 1～10→1、11～20→2...
+    let group = Math.ceil(current / 20);
+
+    clickButton.src =
+        "藍沢エマ" +
+        group +
+        "-" +
+        (hovering ? "2" : "1") +
+        ".png";
+
+}
 
 // 初期表示
 updateCounter();
@@ -126,45 +151,48 @@ slider.addEventListener("input",()=>{
 
 });
 
-// マウスが画像に乗ったら
+// マウスが画像に乗った
 clickButton.addEventListener("mouseenter",()=>{
 
-    clickButton.src = "画像B.png";
+    hovering = true;
+    updateButtonImage();
 
 });
 
-// マウスが画像から離れたら
+// マウスが画像から離れた
 clickButton.addEventListener("mouseleave",()=>{
 
-    clickButton.src = "画像A.png";
+    hovering = false;
+    updateButtonImage();
 
 });
 
-// クリックしたら数値を増やす
+// ボタンクリック
 clickButton.addEventListener("click",()=>{
 
     current++;
     max++;
 
     updateCounter();
+    updateButtonImage();
 
 });
 
-// スマホ対応
-clickButton.addEventListener("touchstart",()=>{
+// スライダー
+slider.addEventListener("input",()=>{
 
-    clickButton.src = "画像B.png";
-
-});
-
-clickButton.addEventListener("touchend",()=>{
-
-    clickButton.src = "画像A.png";
-
-    current++;
-    max++;
+    current = Number(slider.value);
 
     updateCounter();
+    updateButtonImage();
+
+});
+
+// Text変更
+textInput.addEventListener("input",()=>{
+
+updateCounter();
+updateButtonImage();
 
 });
 
