@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clicker Game</title>
+
+<style>
+
+body{
+    margin:0;
+    background:#1f1f1f;
+    color:white;
+    font-family:sans-serif;
+    text-align:center;
+}
+
+header{
+    background:#333;
+    padding:20px;
+    font-size:40px;
+    font-weight:bold;
+}
+
+#textInput{
+    margin-top:40px;
+    width:500px;
+    max-width:80%;
+    padding:12px;
+    font-size:24px;
+    border:none;
+    border-radius:10px;
+    text-align:center;
+    outline:none;
+}
+
+#counter{
+    font-size:60px;
+    margin-top:30px;
+    user-select:none;
+}
+
+#slider{
+    width:500px;
+    max-width:80%;
+    margin-top:25px;
+}
+
+#clickButton{
+    width:250px;
+    margin-top:40px;
+    cursor:pointer;
+    user-select:none;
+    -webkit-user-drag:none;
+    transition:0.05s;
+}
+
+#clickButton:active{
+    transform:scale(0.97);
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+Clicker Game
+</header>
+
+<input
+type="text"
+id="textInput"
+placeholder="Text">
+
+<div id="counter">
+<span id="current">1</span> /
+<span id="max">1</span>
+</div>
+
+<input
+type="range"
+id="slider"
+min="1"
+max="1"
+value="1">
+
+<br><br>
+
+<img
+id="clickButton"
+src="images/ButtonA.png"
+draggable="false"
+alt="Click Button">
+
+<script>
+
+let current = 1;
+let max = 1;
+
+const currentText = document.getElementById("current");
+const maxText = document.getElementById("max");
+const slider = document.getElementById("slider");
+const clickButton = document.getElementById("clickButton");
+const textInput = document.getElementById("textInput");
+
+function updateCounter(){
+
+    currentText.textContent = current;
+    maxText.textContent = max;
+
+    slider.max = max;
+    slider.value = current;
+
+}
+
+// 初期表示
+updateCounter();
+
+// スライダーを動かしたとき
+slider.addEventListener("input",()=>{
+
+    current = Number(slider.value);
+
+    updateCounter();
+
+});
+
+// ボタンを押した瞬間
+clickButton.addEventListener("mousedown",()=>{
+
+    clickButton.src = "images/ButtonB.png";
+
+});
+
+// ボタンを離した瞬間
+clickButton.addEventListener("mouseup",()=>{
+
+    clickButton.src = "images/ButtonA.png";
+
+    current++;
+    max++;
+
+    updateCounter();
+
+});
+
+// ボタンを押したまま外へ出たとき
+clickButton.addEventListener("mouseleave",()=>{
+
+    clickButton.src = "images/ButtonA.png";
+
+});
+
+// タッチ操作対応（スマホなど）
+clickButton.addEventListener("touchstart",()=>{
+
+    clickButton.src = "images/ButtonB.png";
+
+});
+
+clickButton.addEventListener("touchend",()=>{
+
+    clickButton.src = "images/ButtonA.png";
+
+    current++;
+    max++;
+
+    updateCounter();
+
+});
+
+</script>
+
+</body>
+</html>
